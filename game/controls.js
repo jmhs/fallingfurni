@@ -18,6 +18,7 @@ var Ball = function(settings) {
 
       if(ballRect.right > w){
           ballElement.style.left = ( w - ballRect.width) + 'px' ;
+          console.log(ballRect.right,ballRect.left,w,h)
       }
 
 
