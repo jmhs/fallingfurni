@@ -1,8 +1,8 @@
 var Ball = function(settings) {
-
+    // creates ball object
     // Settings
-    var ballElement = null;
-    var bullets = [];
+    var ballElement = null; // initialises ballElement
+
 
 
     function wall() {
@@ -11,14 +11,13 @@ var Ball = function(settings) {
       var w = parseInt(window.innerWidth);
       var h = parseInt(window.innerHeight);
 
-
       if(ballRect.left < 0){
           ballElement.style.left = '0px';
       }
 
       if(ballRect.right > w){
           ballElement.style.left = ( w - ballRect.width) + 'px' ;
-          console.log(ballRect.right,ballRect.left,w,h)
+          console.log(ballRect.right,ballRect.left,w,h);
       }
 
 
@@ -52,12 +51,11 @@ var Ball = function(settings) {
       ballElement.style.top = '400px'; //specifies the position of the ballElement
       ballElement.style.left = '400px';
       ballElement.style.height = '100px';
-
     }
 
     this.render = function(interactions){
       move(interactions);
-    }
+    };
 
     init();
-}
+};

@@ -9,8 +9,16 @@ var Game = function() {
 
     // World settings
     var assets = [];                      // All game objects
-    var player = new Ball(settings);      // The player
+    var player = new Ball(settings);
+    var furniture = new Fallingobjects();
+    var pancake = new Fallingobjects();
+    console.log(furniture)
+    console.log(player)
+            // The player
     assets[0] = player;
+    //assets.push(furniture);
+    assets[1] = furniture;
+    assets[2] = pancake;
     var frame = 0;                        // Frames since the start of the game
 
     // Interactions
@@ -22,6 +30,7 @@ var Game = function() {
 
     // Setup event listeners
     function setupEvents() {
+
 
       document.addEventListener('keyup', function(event){
         var keyName = event.key;
@@ -70,29 +79,40 @@ var Game = function() {
     }
 
     // The render function. It will be called 60/sec
-    function render(){
-
+    this.render=function(){
+      if ((frame /60 ) % 2 === 0) {
+        console.log('2 seconds passed')
+        furniture.create();
+        pancake.create();
+      }
       for(var i=0; i < assets.length; i++){
         assets[i].render(interactions);
-      }
     }
-
+    frame++;
+  };
+var self = this;
     window.requestAnimFrame = (function(){
       return  window.requestAnimationFrame       ||
               window.webkitRequestAnimationFrame ||
               window.mozRequestAnimationFrame    ||
               function( callback ){
                 window.setTimeout(callback, 1000 / 60);
+
               };
             })();
 
 
             (function animloop(){
               requestAnimFrame(animloop);
-              render();
+              self.render();
             })();
 
             init();
-}
-
-var g = new Game();
+};
+// var Wwidth = $(window).width();
+// var Bwidth = Wwidth + "10"px;
+//
+// var Wheight = $(window).height();
+// var Bheight = Wheight + "20"px;
+// console.log(width,height);
+var g = new Game(); // initialises game

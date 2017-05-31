@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>falling furni</title>
+
+  <style>
+
+    #container {
+    padding: 0;
+    margin: 0;
+    background-color:red;
+
+    width:300px; height:300px;
+    border:1px solid red;
+    margin: 0 auto;
+  }
+
+
+    #ball {
+      height:90px;
+      width: 80px;
+      background-image: url("images/curtain.gif");
+
+      position: absolute;
+      border-bottom-width:medium;
+      bottom: 20px;
+      left:50px;
+      border-radius: 0;
+    }
+    html, body
+{
+    height: 100%;
+}
+
+  </style>
+
+</head>
+
+<body>
+<div class = "container">
+  <div id="ball"></div>
+
+</div>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript" src="game/fallingObjects.js"></script>
+  <script type="text/javascript" src="game/controls.js"></script>
+  <script type="text/javascript" src="game/game.js"></script>
+</body>
+</html>
