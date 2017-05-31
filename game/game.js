@@ -11,9 +11,10 @@ var Game = function() {
     var assets = [];                      // All game objects
     var player = new Ball(settings);
     var furniture = new Fallingobjects();
-    var pancake = new Fallingobjects();
-    console.log(furniture)
-    console.log(player)
+    var pancake = new FallingPancake();
+    console.log(furniture);
+    console.log(player);
+    console.log(pancake);
             // The player
     assets[0] = player;
     //assets.push(furniture);
@@ -81,9 +82,14 @@ var Game = function() {
     // The render function. It will be called 60/sec
     this.render=function(){
       if ((frame /60 ) % 2 === 0) {
-        console.log('2 seconds passed')
+        console.log('2 seconds passed');
         furniture.create();
+
+      }
+      if ((frame /60 ) % 3 === 0) {
+        console.log('3 seconds passed');
         pancake.create();
+
       }
       for(var i=0; i < assets.length; i++){
         assets[i].render(interactions);

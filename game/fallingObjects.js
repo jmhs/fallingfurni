@@ -17,16 +17,13 @@ function getRandomIntInclusive(min, max) {
 
 var Conwidth = $(".container").width();
 var Conheight = $(".container").height();
-
 var furnilist = [];
-var pancakelist = [];
 var furniID = 1;
-var pancakeID = 1;
+
 this.create = function(){
   fallingfurni();
-  fallingpancakes();
+
   function fallingfurni(){
-      console.log('created')
       var Xvalue = getRandomIntInclusive(1, Conwidth);
       var furniObject = document.createElement('img');
       furniObject.setAttribute("src","images/bed.PNG");
@@ -39,23 +36,7 @@ this.create = function(){
       furniID++;
       furnilist.push(furniObject);
   }
-
-
-function fallingpancakes(){
-  var Xvalue = getRandomIntInclusive(1, Conwidth);
-  var pancakeObject = document.createElement('img');
-  pancakeObject.setAttribute("src","images/greensofa.gif");
-  pancakeObject.style.position ="absolute";
-  pancakeObject.style.height="auto";
-  pancakeObject.style.top = 10+'px';
-  pancakeObject.style.left = Xvalue+ "px";
-  pancakeObject.id = "pancakeObject-"+pancakeID;
-  gameWindow.appendChild(pancakeObject);
-  pancakeID++;
-  pancakelist.push(pancakeObject);
-    }
 };
-
 var falling = function(){
   for (var i=0; i < furnilist.length; i++){
     var id = i+1;
@@ -64,71 +45,24 @@ var falling = function(){
     var fall = function () {
           furniObject.style.top = parseInt(furniObject.style.top) + 10 +'px';
           console.log(parseInt(furniObject.style.top));
-      }
 
+          console.log(furnilist)
+      }
       fall();
     }
   setTimeout(fall, 2000);
 };
 
-var falling2 = function(){
-  for (var i=0; i < pancakelist.length; i++){
-    var id = i+1;
-    var furniObject = document.getElementById('pancakeObject-' + id);
-    console.log(pancakeObject);
-      var fall=function() {
-          pancakeObject.style.top = parseInt(pancakeObject.style.top) + 10 +'px';
-          console.log(parseInt(pancakeObject.style.top));
-      }
-
-      fall();
-    }
-  // setTimeout(fall, 1000);
-};
-
-// var falling22 = function()
-// {for (var i =0; i < pancakelist.length; i++) {
-//   var id = i+1;
-//   var pancakeObject = document.getElementById('pancakeObject-' + id);
-//   console.log(pancakeObject);
-//     function fall2 () {
-//         pancakeObject.style.top = parseInt(pancakeObject.style.top) + 10 +'px';
-//         console.log(parseInt(pancakeObject.style.top));
-//     }
-//
-//       fall2();
-// }
-//
-//
-//   setTimeout(fall2, 2000);
-// };
-
+var removeIt =  function(){
+  if(parseInt(this.furniObject.style.top)> 410){furnilist.splice(1,1)}}
 
 this.render = function(interactions){
-  //create();
-  falling();
-  falling2();
-
-   //falling(); IF EXCEED WINHEIGHT REMOVE
-};
-};
+  // create();;
+  falling(removeIt());
+};}
 
 
 
-
-// var fallingObjects=function(){
-//
-
-
-
-// var fallingfurni = {};
-//   var fallingpancakes = {};
-//
-// }
-//
-//
-// function fallingObjects(){
-//
 // }
 // function resetRock(rock){
 //     rock.x=Math.random()*(window.width-rockWidth);
