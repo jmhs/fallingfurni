@@ -35,14 +35,10 @@ var FallingPancake = function(){
       var id = i+1;
       var pancakeObject = document.getElementById('pancakeObject-' + id);
       //console.log(furniObject);
-      var fall = function () {
-            pancakeObject.style.top = parseInt(pancakeObject.style.top) + 10 +'px';
-            console.log(parseInt(pancakeObject.style.top));
-        };
-
-        fall();
+      pancakeObject.style.top = parseInt(pancakeObject.style.top) + 10 +'px';
+      //console.log(parseInt(pancakeObject.style.top));
       }
-    setTimeout(fall, 2000);
+    //setTimeout(fall, 2000);
   };
 
 

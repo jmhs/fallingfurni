@@ -5,6 +5,8 @@
 //  specify position to be absolute and make it fall
 // every frame move down how many px?
 // want a path? equation!
+var Conwidth = $(".container").width();
+var Conheight = $(".container").height();
 var Fallingobjects = function(){
 
 var gameWindow = document.getElementsByClassName("container")[0];
@@ -17,49 +19,71 @@ function getRandomIntInclusive(min, max) {
 
 var Conwidth = $(".container").width();
 var Conheight = $(".container").height();
+var furniImage = ['images/bed.PNG','images/bench.png','images/shelter.png','images/longsofa.png','images/redbed.jpg'];
+var randomImage = furniImage[Math.floor(Math.random()*furniImage.length)];
 var furnilist = [];
 var furniID = 1;
+var fallingspeed = 10;
+this.isFalling = false;
 
-this.create = function(){
-  fallingfurni();
+this.furniObject = null;
+
+this.getID = function () {
+  return furniID;
+}
+this.create = function(settings){
+  this.isFalling = true;
+    fallingfurni();
+
 
   function fallingfurni(){
-      var Xvalue = getRandomIntInclusive(1, Conwidth);
-      var furniObject = document.createElement('img');
-      furniObject.setAttribute("src","images/bed.PNG");
-      furniObject.style.position ="absolute";
-      furniObject.style.height="auto";
-      furniObject.style.top = 10+'px';
-      furniObject.style.left = Xvalue+ "px";
-      furniObject.id = "furniObject-"+furniID;
+      var Xvalue = getRandomIntInclusive(1, Conwidth)
+      furniID = settings.furniID
+      this.furniObject = document.createElement('img');
+      this.furniObject.setAttribute("src",furniImage[0]);
+      this.furniObject.style.position ="absolute";
+      this.furniObject.style.height="auto";
+      this.furniObject.style.top = 10+'px';
+      this.furniObject.style.left = Xvalue+ "px";
+      this.furniObject.id = "furniObject-"+furniID;
+      this.furniObject.setAttribute("class", "furni")
       gameWindow.appendChild(furniObject);
-      furniID++;
-      furnilist.push(furniObject);
+      settings.furniID++;
+      settings.furniList.push(this.furniObject);
   }
+  return this.furniObject
 };
+// this.posi = function(){
+//   return parseInt(furniObject.style.top)
+// }
+
+
 var falling = function(){
-  for (var i=0; i < furnilist.length; i++){
-    var id = i+1;
-    var furniObject = document.getElementById('furniObject-' + id);
-    console.log(furniObject);
-    var fall = function () {
-          furniObject.style.top = parseInt(furniObject.style.top) + 10 +'px';
-          console.log(parseInt(furniObject.style.top));
-
-          console.log(furnilist)
-      }
-      fall();
-    }
-  setTimeout(fall, 2000);
+    this.furniObject = document.getElementById('furniObject-' + furniID);
+     // console.log(furniObject);
+    //console.log(this.furniObject)
+    this.furniObject.style.top = parseInt(this.furniObject.style.top) + fallingspeed +'px';
+    //var Y = parseInt(furniObject.style.top);
+    //if(Y > 410){furnilist.splice(0,1);}
+    //console.log(furnilist)
+          //top.removeChild(nested)
+          //console.log(furnilist);
+  // setTimeout(fall, 2000);
 };
 
-var removeIt =  function(){
-  if(parseInt(this.furniObject.style.top)> 410){furnilist.splice(1,1)}}
+
 
 this.render = function(interactions){
   // create();;
-  falling(removeIt());
-};}
+  if (this.isFalling){
+    //console.log('falling')
+      falling();
+  }
+
+
+};
+
+};
 
 
 

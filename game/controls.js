@@ -1,8 +1,8 @@
 var Ball = function(settings) {
     // creates ball object
     // Settings
-    var ballElement = null; // initialises ballElement
-
+    this.ballElement = null; // initialises ballElement
+    var ballSpeed=10
 
 
     function wall() {
@@ -28,11 +28,11 @@ var Ball = function(settings) {
     function move(interactions){
 
       if(interactions.left){
-        ballElement.style.left = parseInt(ballElement.style.left)-14+"px";
+        ballElement.style.left = parseInt(ballElement.style.left)-ballSpeed+"px";
       }
 
       if(interactions.right){
-        ballElement.style.left = parseInt(ballElement.style.left)+14+"px";
+        ballElement.style.left = parseInt(ballElement.style.left)+ballSpeed+"px";
       }
 
       if(settings.walls){
