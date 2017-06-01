@@ -5,11 +5,10 @@
 //  specify position to be absolute and make it fall
 // every frame move down how many px?
 // want a path? equation!
-var Conwidth = $(".container").width();
-var Conheight = $(".container").height();
+
 var Fallingobjects = function(){
 
-var gameWindow = document.getElementsByClassName("container")[0];
+var gameWindow = document.getElementsByClassName("container-fluid")[0];
 
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
@@ -17,28 +16,23 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 } // function to get a randomly generated number between two min and ma
 
-var Conwidth = $(".container").width();
-var Conheight = $(".container").height();
+var Conwidth = $(".container").css( "width" );
+var Conheight = $(".container").css( "height" );
 var furniImage = ['images/bed.PNG','images/bench.png','images/shelter.png','images/longsofa.png','images/redbed.jpg'];
 var randomImage = furniImage[Math.floor(Math.random()*furniImage.length)];
 var furnilist = [];
 var furniID = 1;
 var fallingspeed = 10;
 this.isFalling = false;
-
 this.furniObject = null;
 
-this.getID = function () {
-  return furniID;
-}
 this.create = function(settings){
   this.isFalling = true;
     fallingfurni();
 
-
   function fallingfurni(){
       var Xvalue = getRandomIntInclusive(1, Conwidth)
-      furniID = settings.furniID
+      furniID = settings.furniID;
       this.furniObject = document.createElement('img');
       this.furniObject.setAttribute("src",furniImage[0]);
       this.furniObject.style.position ="absolute";
@@ -47,11 +41,12 @@ this.create = function(settings){
       this.furniObject.style.left = Xvalue+ "px";
       this.furniObject.id = "furniObject-"+furniID;
       this.furniObject.setAttribute("class", "furni")
-      gameWindow.appendChild(furniObject);
+      console.log(gameWindow)
+      gameWindow.appendChild(this.furniObject);
       settings.furniID++;
       settings.furniList.push(this.furniObject);
   }
-  return this.furniObject
+  return this.furniObject;
 };
 // this.posi = function(){
 //   return parseInt(furniObject.style.top)
@@ -66,8 +61,6 @@ var falling = function(){
     //var Y = parseInt(furniObject.style.top);
     //if(Y > 410){furnilist.splice(0,1);}
     //console.log(furnilist)
-          //top.removeChild(nested)
-          //console.log(furnilist);
   // setTimeout(fall, 2000);
 };
 
@@ -79,8 +72,6 @@ this.render = function(interactions){
     //console.log('falling')
       falling();
   }
-
-
 };
 
 };

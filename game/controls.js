@@ -2,7 +2,7 @@ var Ball = function(settings) {
     // creates ball object
     // Settings
     this.ballElement = null; // initialises ballElement
-    var ballSpeed=10
+    var ballSpeed=10;
 
 
     function wall() {
@@ -19,8 +19,6 @@ var Ball = function(settings) {
           ballElement.style.left = ( w - ballRect.width) + 'px' ;
           console.log(ballRect.right,ballRect.left,w,h);
       }
-
-
 
     }
 

@@ -2,48 +2,50 @@
 
 var FallingPancake = function(){
 
-  var gameWindow = document.getElementsByClassName("container")[0];
+  var gameWindow = document.getElementsByClassName("container-fluid")[0];
   function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   } // function to get a randomly generated number between two min and ma
-  var Conwidth = $(".container").width();
-  var Conheight = $(".container").height();
-  var pancakelist = [];
+  var Conwidth = $(".container").css( "width" );
+  var Conheight = $(".container").css( "height" )
+  var pancakeList = [];
   var pancakeID = 1;
+  var fallingspeed = 15;
+  this.isFalling = false;
+  this.pancakeObject = null;
 
-  this.create = function(){
+
+  this.create = function(settings){
+    this.isFalling = true;
     fallingpancakes();
 
     function fallingpancakes(){
       var Xvalue = getRandomIntInclusive(1, Conwidth);
-      var pancakeObject = document.createElement('img');
-      pancakeObject.setAttribute("src","images/greensofa.gif");
-      pancakeObject.style.position ="absolute";
-      pancakeObject.style.height="auto";
-      pancakeObject.style.top = 10+'px';
-      pancakeObject.style.left = Xvalue+ "px";
-      pancakeObject.id = "pancakeObject-"+pancakeID;
+      this.pancakeObject = document.createElement('img');
+      this.pancakeObject.setAttribute("src","images/pasted-image.jpeg");
+      this.pancakeObject.style.position ="absolute";
+      this.pancakeObject.style.height="auto";
+      this.pancakeObject.style.top = 10 +'px';
+      this.pancakeObject.style.left = Xvalue+ "px";
+      this.pancakeObject.id = "pancakeObject-"+ pancakeID;
+      this.pancakeObject.setAttribute("class","pancake");
       gameWindow.appendChild(pancakeObject);
-      pancakeID++;
-      pancakelist.push(pancakeObject);
-        }
+      settings.pancakeID++; // changes the count in the settings for game to retrieve
+      settings.pancakeList.push(this.pancakeObject);
+    }
+    return this.pancakeObject;
   };
   var falling = function(){
-    for (var i=0; i < pancakelist.length; i++){
-      var id = i+1;
-      var pancakeObject = document.getElementById('pancakeObject-' + id);
-      //console.log(furniObject);
-      pancakeObject.style.top = parseInt(pancakeObject.style.top) + 10 +'px';
-      //console.log(parseInt(pancakeObject.style.top));
-      }
-    //setTimeout(fall, 2000);
+    this.pancakeObject = document.getElementById('pancakeObject-'+ pancakeID);
+    this.pancakeObject.style.top = parseInt(this.pancakeObject.style.top)+ fallingspeed +"px";
+
   };
 
 
   this.render = function(interactions){
-    // create();;
-    falling();  // +IF EXCEED WINHEIGHT REMOVE};
-};
+    if(this.isFalling)
+    falling();
+  };
 };

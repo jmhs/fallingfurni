@@ -5,23 +5,18 @@ var Game = function() {
     settings.ballSpeed = 8;                // The speed of the ball
     settings.walls = true;                 // The ball can not go outside the screen
     settings.furniID = 1;
-    settings.furniList = []
+    settings.furniList = [];
+    settings.pancakeID = 1;
+    settings.pancakeList = [];
     // settings.automatic = false;            // The ball will move by itself
     // settings.godmode = false;              // Debug mode
 
     // World settings
     var assets = [];                      // All game objects
     var player = new Ball(settings);
-    //var furniture = new Fallingobjects();
-    //var pancake = new FallingPancake();
-            // The player
     assets[0] = player;
-    //assets.push(furniture);
-    //assets[1] = furniture;
-    //assets[2] = pancake;
     var frame = 0;
     console.log(assets);                     // Frames since the start of the game
-
     // Interactions
     var interactions = {};
 
@@ -66,11 +61,8 @@ var Game = function() {
       });
     }
 
-    //Collision detection
-    //Collision detection
     function CollisionDetect () {
-      //player
-      //with the star objects
+
      var playerRect = document.getElementById('ball').getBoundingClientRect();
      var furnilist = settings.furniList;
       for(var i = 0; i<furnilist.length;i++){
@@ -83,30 +75,45 @@ var Game = function() {
             playerRect.top < furniRect.top + furniRect.height &&
             playerRect.height + playerRect.top > furniRect.top) {
             console.log('player:', playerRect.left, '  furni:', furniRect.left+furniRect.width)
-            console.log('collision detected')
+            console.log('collision detected');
             furniObject.isFalling = false;
             console.log(furniObject.isFalling)
             furniObject.remove();
             furnilist.splice(i,1)
             assets.splice(i+1,1);
-            console.log('removed');}
+            console.log('removed');
           }
+          // else if (furniRect.top+furniRect.height>520){
+          //     furniObject.remove();
+          //     furnilist.splice(i,1);
+          //     assets.splice(i+1,1);console.log("KAN")}
         }
+        // re-write splice to accommodate pancake and furniObject
+        // for each furni/pancake get the index place of it in assets array
+        // var toRemove = assets.indexOf(furniObject.id)
+        // assets.splice(toRemove, 1)
 
-      // //with the Aliens
-      // for (var j = 0; j < panca.length; j++){
-      //   var alienElement = alien_player[j].alienElement;
+
+      // var pancakeList = settings.pancakeList;
+      //   for(var i = 0; i<pancakeList.length;i++){
+      //     var pancakeObject = pancakeList[i];
+      //     var pancakeRect = document.getElementById(pancakeObject.id).getBoundingClientRect();
+      //      if (playerRect.left < pancakeRect.left + pancakeRect.width &&
+      //          playerRect.left + playerRect.width > pancakeRect.left &&
+      //          playerRect.top < pancakeRect.top + pancakeRect.height &&
+      //          playerRect.height + playerRect.top > pancakeRect.top) {
+      //          console.log('player:', playerRect.left, '  pancake:', pancakeRect.left+pancakeRect.width)
+      //          console.log('collision detected');
       //
-      //
-      //  var alienRect = alienElement.getBoundingClientRect();
-      //   if (playerRect.left < alienRect.left + alienRect.width &&
-      //       playerRect.left + playerRect.width > alienRect.left &&
-      //       playerRect.top < alienRect.top + alienRect.height &&
-      //       playerRect.height + playerRect.top > alienRect.top) {
-      //
-      //      console.log(‘boom gameover’);
-      //     }
-      //   };}
+      //          pancakeObject.isFalling = false;
+      //          //console.log(pancakeObject.isFalling)
+      //          //pancakeObject.remove();
+      //          //pancakeList.splice(i,1)
+      //          assets.splice(i+2,1);
+      //          console.log('removedP');}
+      //        }
+           }
+
 
     // Startup the game
     function init(){
@@ -126,8 +133,9 @@ var Game = function() {
       }
       if ((frame /60 ) % 3 === 0) {
         console.log('3 seconds passed');
-        //pancake.create();
-
+        var pancake = new FallingPancake();
+        pancake.create(settings);
+        assets.push(pancake);
 
       }
       //if (furniture.posi > 410){console.log("Doit")};
