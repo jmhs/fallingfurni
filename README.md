@@ -1,5 +1,5 @@
 # fallingfurni
-Avoid the furniture, collect the pancakes
-press left/right to control.
-Get hit by a furniture and you are dead.
-Player with most points win.
+1. Avoid the furniture, collect the pancakes
+2. press left/right key to control.
+3. Get hit by a furniture and you are dead.
+4. Player with most points win.
