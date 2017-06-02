@@ -10,7 +10,7 @@
     padding: 0;
     margin: 0;
     background-color:auto;
-    background-image: url("Front_ninja_campaign_2.png"), url("bg.gif");
+    background-image: url("images/Front_ninja_campaign_2.png"), url("images/bg.gif");
     height: 100%;
     width:100%;
     border:1px solid red;
@@ -20,7 +20,7 @@
     #Control {
       height:90px;
       width: 75px;
-      background-image: url("ebe6ba_20.gif");
+      background-image: url("images/ebe6ba_20.gif");
       position: absolute;
       border-bottom-width:medium;
       bottom: 20px;
@@ -40,15 +40,16 @@
       position: absolute;
       z-index: 1;
     }
+
   </style>
 
 </head>
 
 <body>
-  <div id="start-screen" style="height: 100vh; width: 100vw; position: absolute; z-index:1; background-color:white">
+  <div id="start-screen" style="height: 100vh; width: 100vw; position: absolute; z-index:1;background-image: url('bg.gif')">
     <h1>Falling Furni</h1>
-    
-    <p>instructions</p>
+    <img src="images/logo.png" style="top:50%;left:50%;">
+    <h1>Avoid</h1>
     <button type="button" name="start" id="start">START</button>
   </div>
 <div class = "container">
