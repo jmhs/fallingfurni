@@ -22,7 +22,7 @@ function getRandomIntInclusive(min, max) {
 
 var Conwidth = 700;//$(".container").width();
 var Conheight = 700;//$(".container").height();
-var furniImage = ['images/sleepingman.gif','images/shelter.png','images/longsofa.png','images/technyancolor.gif','images/tv.gif','images/vase.png','images/scifi_minibar.gif'];
+var furniImage = ['images/bb8.gif','images/sleepingman.gif','images/shelter.png','images/longsofa.png','images/technyancolor.gif','images/tv.gif','images/vase.png','images/scifi_minibar.gif'];
 var randomImage = furniImage[Math.floor(Math.random()*furniImage.length)];
 var furnilist = [];
 //var furniID = 1;
