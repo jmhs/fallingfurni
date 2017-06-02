@@ -9,7 +9,7 @@
 var Fallingobjects = function(settings){
 
 //global objects of Fallingobjects class
-var gameWindow = document.getElementsByClassName("container")[0];
+var gameWindow = document.getElementsByClassName("container")[0]; //initialise gamewindow for appending the object
 var furniObject = null;
 this.id = settings.furniID;
 this.isFalling = settings.furniFalling;
@@ -22,11 +22,11 @@ function getRandomIntInclusive(min, max) {
 
 var Conwidth = 700;//$(".container").width();
 var Conheight = 700;//$(".container").height();
-var furniImage = ['images/bb8.gif','images/sleepingman.gif','images/shelter.png','images/longsofa.png','images/technyancolor.gif','images/tv.gif','images/vase.png','images/scifi_minibar.gif'];
+var furniImage = ['images/fridge.gif','images/bb8.gif','images/sleepingman.gif','images/shelter.png','images/longsofa.png','images/technyancolor.gif','images/tv.gif','images/vase.png','images/scifi_minibar.gif'];
 var randomImage = furniImage[Math.floor(Math.random()*furniImage.length)];
 var furnilist = [];
 //var furniID = 1;
-var fallingspeed = 10;
+var fallingspeed = 8;
 
 
 this.create = function(settings){
@@ -57,7 +57,8 @@ this.create = function(settings){
 
 
 var falling = function(){
-  this.id = settings.furniID - 1
+  //get the iD of furni object and make it fall
+    this.id = settings.furniID - 1;
     furniObject = document.getElementById('furniObject-' + this.id);
     //console.log(this.id)
     //console.log(furniObject)
