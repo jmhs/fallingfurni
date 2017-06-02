@@ -1,36 +1,35 @@
-var Ball = function(settings) {
-    // creates ball object
+var Control = function(settings) {
+    // creates Control object
     // Settings
-    this.ballElement = null; // initialises ballElement
-    var ballSpeed=10;
+    this.ControlElement = null; // initialises ControlElement
+    var ControlSpeed=10;
 
 
     function wall() {
 
-      var ballRect = ballElement.getBoundingClientRect();
-      var w = parseInt(window.innerWidth);
+      var ControlRect = ControlElement.getBoundingClientRect();
+      var w = 700;//parseInt(window.innerWidth);
       var h = parseInt(window.innerHeight);
 
-      if(ballRect.left < 0){
-          ballElement.style.left = '0px';
+      if(ControlRect.left < 200){
+          ControlElement.style.left = '200px';
       }
 
-      if(ballRect.right > w){
-          ballElement.style.left = ( w - ballRect.width) + 'px' ;
-          console.log(ballRect.right,ballRect.left,w,h);
+      if(ControlRect.right > w){
+          ControlElement.style.left = ( w - ControlRect.width) + 'px' ;
+          console.log(ControlRect.right,ControlRect.left,w,h);
       }
 
     }
-
-    // Move the ball around manually
+    // Move the Control around manually
     function move(interactions){
 
       if(interactions.left){
-        ballElement.style.left = parseInt(ballElement.style.left)-ballSpeed+"px";
+        ControlElement.style.left = parseInt(ControlElement.style.left)-ControlSpeed+"px";
       }
 
       if(interactions.right){
-        ballElement.style.left = parseInt(ballElement.style.left)+ballSpeed+"px";
+        ControlElement.style.left = parseInt(ControlElement.style.left)+ControlSpeed+"px";
       }
 
       if(settings.walls){
@@ -45,10 +44,10 @@ var Ball = function(settings) {
 
     function init(){
       // create();
-      ballElement = document.getElementById('ball');
-      ballElement.style.top = '400px'; //specifies the position of the ballElement
-      ballElement.style.left = '400px';
-      ballElement.style.height = '100px';
+      ControlElement = document.getElementById('Control');
+      ControlElement.style.top = '400px'; //specifies the position of the ControlElement
+      ControlElement.style.left = '400px';
+      ControlElement.style.height = '100px';
     }
 
     this.render = function(interactions){

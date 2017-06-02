@@ -11,36 +11,35 @@
     margin: 0;
     background-color:auto;
     background-image: url("Front_ninja_campaign_2.png"), url("bg.gif");
-    height: 822px;
-    width:600px;
+    height: 100%;
+    width:100%;
     border:1px solid red;
     margin: 0 auto;
   }
 
-
-    #ball {
+    #Control {
       height:90px;
-      width: 80px;
-      background-image: url("images/curtain.gif");
-
+      width: 75px;
+      background-image: url("ebe6ba_20.gif");
       position: absolute;
       border-bottom-width:medium;
       bottom: 20px;
       left:50px;
       border-radius: 0;
     }
-    html, body
-{
-    height: 100%;
-}
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0}
 
   </style>
 
 </head>
 
 <body>
-<div class = "container-fluid">
-  <div id="ball"></div>
+<div class = "container">
+  <div id="Control"></div>
 </div>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script type="text/javascript" src="game/fallingObjects.js"></script>

@@ -6,9 +6,13 @@
 // every frame move down how many px?
 // want a path? equation!
 
-var Fallingobjects = function(){
+var Fallingobjects = function(settings){
 
-var gameWindow = document.getElementsByClassName("container-fluid")[0];
+//global objects of Fallingobjects class
+var gameWindow = document.getElementsByClassName("container")[0];
+var furniObject = null;
+this.id = settings.furniID;
+this.isFalling = settings.furniFalling;
 
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
@@ -16,71 +20,62 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 } // function to get a randomly generated number between two min and ma
 
-var Conwidth = $(".container").css( "width" );
-var Conheight = $(".container").css( "height" );
-var furniImage = ['images/bed.PNG','images/bench.png','images/shelter.png','images/longsofa.png','images/redbed.jpg'];
+var Conwidth = 700;//$(".container").width();
+var Conheight = 700;//$(".container").height();
+var furniImage = ['images/sleepingman.gif','images/shelter.png','images/longsofa.png','images/technyancolor.gif','images/tv.gif','images/vase.png','images/scifi_minibar.gif'];
 var randomImage = furniImage[Math.floor(Math.random()*furniImage.length)];
 var furnilist = [];
-var furniID = 1;
+//var furniID = 1;
 var fallingspeed = 10;
-this.isFalling = false;
-this.furniObject = null;
+
 
 this.create = function(settings){
-  this.isFalling = true;
-    fallingfurni();
 
-  function fallingfurni(){
-      var Xvalue = getRandomIntInclusive(1, Conwidth)
-      furniID = settings.furniID;
-      this.furniObject = document.createElement('img');
-      this.furniObject.setAttribute("src",furniImage[0]);
-      this.furniObject.style.position ="absolute";
-      this.furniObject.style.height="auto";
-      this.furniObject.style.top = 10+'px';
-      this.furniObject.style.left = Xvalue+ "px";
-      this.furniObject.id = "furniObject-"+furniID;
-      this.furniObject.setAttribute("class", "furni")
-      console.log(gameWindow)
-      gameWindow.appendChild(this.furniObject);
+  //   fallingfurni();
+  //
+  // function fallingfurni(){
+
+      var Xvalue = getRandomIntInclusive(200, Conwidth);
+      this.id = settings.furniID;
       settings.furniID++;
-      settings.furniList.push(this.furniObject);
-  }
-  return this.furniObject;
+      furniObject = document.createElement('img');
+      furniObject.setAttribute("src",randomImage);
+      furniObject.style.position ="absolute";
+      furniObject.style.height="auto";
+      furniObject.style.top = 10+'px';
+      furniObject.style.left = Xvalue+ "px";
+      furniObject.id = "furniObject-"+ (this.id);
+      furniObject.setAttribute("class", "furni");
+      console.log(furniObject);
+      gameWindow.appendChild(furniObject);
+      settings.furniList.push(furniObject);
+      this.isFalling = true;
+
+  return furniObject;
 };
-// this.posi = function(){
-//   return parseInt(furniObject.style.top)
-// }
+
 
 
 var falling = function(){
-    this.furniObject = document.getElementById('furniObject-' + furniID);
-     // console.log(furniObject);
-    //console.log(this.furniObject)
-    this.furniObject.style.top = parseInt(this.furniObject.style.top) + fallingspeed +'px';
-    //var Y = parseInt(furniObject.style.top);
-    //if(Y > 410){furnilist.splice(0,1);}
-    //console.log(furnilist)
-  // setTimeout(fall, 2000);
+  this.id = settings.furniID - 1
+    furniObject = document.getElementById('furniObject-' + this.id);
+    //console.log(this.id)
+    //console.log(furniObject)
+    if(!furniObject){
+      return;
+    }
+    furniObject.style.top = parseInt(furniObject.style.top) + fallingspeed +'px';
+    var h = window.innerHeight;
+    if (parseInt(furniObject.style.top) > h) {
+     this.isFalling = false;
+    }
 };
-
-
 
 this.render = function(interactions){
   // create();;
   if (this.isFalling){
     //console.log('falling')
       falling();
-  }
+    }
+  };
 };
-
-};
-
-
-
-// }
-// function resetRock(rock){
-//     rock.x=Math.random()*(window.width-rockWidth);
-//     rock.y=15+Math.random()*30;
-//     rock.speed=0.2+Math.random()*0.5;
-//
