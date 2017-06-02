@@ -9,6 +9,8 @@ var Game = function() {
     settings.pancakeList = [];
     settings.furniFalling = false;
     settings.pancakeFalling = false;
+    settings.score = 0;
+
 
     // World settings
     var assets = [];                      // All game objects
@@ -16,6 +18,9 @@ var Game = function() {
     var furniObjList = [];
     var pancakeObjList = [];
     assets[0] = player;
+    var score = new Score(settings);
+    score.create();
+    assets[1] = score;
     var frame = 0;
     var interactions = {};
 
@@ -82,11 +87,13 @@ var Game = function() {
               $("#furniObject-"+furniObject.id).remove();
               furniObjList[objID-1].isFalling = false;
               //alert("Game Over")
-            }
-            else if (furniRect.top + furniRect.height > window.innerHeight )
-             {
+              var x= document.getElementsByClassName('container')[0]
+              x.setAttribute('style', 'font-size: 100px')
+              x.innerHTML = 'GAMEOVER'
 
-              $("#furniObject-"+furniObject.id).remove();
+              setTimeout(function(){location.reload()}, 2000);
+            } else if (furniRect.top + furniRect.height > window.innerHeight ) {
+            $("#furniObject-"+furniObject.id).remove();
             console.log('furni remove')
             furniObjList[objID-1].isFalling = false;
             }
@@ -112,9 +119,9 @@ var Game = function() {
               playerRect.top < pancakeRect.top + pancakeRect.height &&
               playerRect.height + playerRect.top > pancakeRect.top) {
                 console.log("pancake collided");
+                settings.score++;
                 $("#pancakeObject-"+pancakeObject.pancakeID).remove();
                 pancakeObjList[pObjID-1].isFalling = false;
-                //alert("Game Over")
               } else if (pancakeRect.top + pancakeRect.height > window.innerHeight ) {
               $("#pancakeObject-"+pancakeObject.pancakeID).remove();
               //console.log(pancakeObject.pancakeID)
@@ -159,6 +166,7 @@ var Game = function() {
     // Startup the game
     function init(){
       setupEvents();
+
     }
 
     // The render function. It will be called 60/sec
@@ -208,4 +216,8 @@ var Game = function() {
 
 };
 
-var g = new Game(); // i[  lnitialises game
+document.getElementById('start').addEventListener('click', function(){
+  console.log('click')
+  document.getElementById('start-screen').setAttribute('style', 'display:none;')
+  var g = new Game(); // initialises game
+})
